@@ -1,11 +1,12 @@
 import React from 'react';
-import { BasicLayoutProps, Settings as LayoutSettings } from '@ant-design/pro-layout';
-import { notification } from 'antd';
-import { history, RequestConfig } from 'umi';
+import type {BasicLayoutProps, Settings as LayoutSettings} from '@ant-design/pro-layout';
+import {notification} from 'antd';
+import type {RequestConfig} from 'umi';
+import {history} from 'umi';
 import RightContent from '@/components/RightContent';
 // import Footer from '@/components/Footer';
-import { ResponseError } from 'umi-request';
-import { queryCurrent } from './services/user';
+import type {ResponseError} from 'umi-request';
+import {queryCurrent} from './services/user';
 import defaultSettings from '../config/defaultSettings';
 
 export async function getInitialState(): Promise<{
@@ -15,8 +16,7 @@ export async function getInitialState(): Promise<{
 }> {
   const fetchUserInfo = async () => {
     try {
-      const currentUser = await queryCurrent();
-      return currentUser;
+      return await queryCurrent();
     } catch (error) {
       history.push('/user/login');
     }
@@ -38,17 +38,17 @@ export async function getInitialState(): Promise<{
 }
 
 export const layout = ({
-  initialState,
-}: {
+                         initialState,
+                       }: {
   initialState: { settings?: LayoutSettings; currentUser?: API.CurrentUser };
 }): BasicLayoutProps => {
   return {
-    rightContentRender: () => <RightContent />,
+    rightContentRender: () => <RightContent/>,
     disableContentMargin: false,
     // footerRender: () => <Footer />,
     onPageChange: () => {
-      const { currentUser } = initialState;
-      const { location } = history;
+      const {currentUser} = initialState;
+      const {location} = history;
       // 如果没有登录，重定向到 login
       if (!currentUser && location.pathname !== '/user/login') {
         history.push('/user/login');
@@ -82,10 +82,10 @@ const codeMessage = {
  * 异常处理程序
  */
 const errorHandler = (error: ResponseError) => {
-  const { response } = error;
+  const {response} = error;
   if (response && response.status) {
     const errorText = codeMessage[response.status] || response.statusText;
-    const { status, url } = response;
+    const {status, url} = response;
 
     notification.error({
       message: `请求错误 ${status}: ${url}`,

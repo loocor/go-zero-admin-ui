@@ -1,15 +1,18 @@
-import { PlusOutlined, ExclamationCircleOutlined  } from '@ant-design/icons';
-import {Button, Divider, message, Input, Drawer, Modal} from 'antd';
-import React, { useState, useRef } from 'react';
-import { PageContainer, FooterToolbar } from '@ant-design/pro-layout';
-import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
+import React, {useRef, useState} from 'react';
+import type {ActionType, ProColumns} from '@ant-design/pro-table';
+import ProTable from '@ant-design/pro-table';
 import ProDescriptions from '@ant-design/pro-descriptions';
+import {ExclamationCircleOutlined, PlusOutlined} from '@ant-design/icons';
+import {Button, Divider, Drawer, Input, message, Modal} from 'antd';
+import {FooterToolbar, PageContainer} from '@ant-design/pro-layout';
+import type {FormValueType} from './components/UpdateForm';
+import UpdateForm from './components/UpdateForm';
+import type {TableListItem} from './data.d';
 import CreateForm from './components/CreateForm';
-import UpdateForm, { FormValueType } from './components/UpdateForm';
-import { TableListItem } from './data.d';
-import { queryRule, updateRule, addRule, removeRule, removeRuleOne } from './service';
 
-const { confirm } = Modal;
+import {addRule, queryRule, removeRule, removeRuleOne, updateRule} from './service';
+
+const {confirm} = Modal;
 
 /**
  * 添加节点
@@ -18,7 +21,7 @@ const { confirm } = Modal;
 const handleAdd = async (fields: TableListItem) => {
   const hide = message.loading('正在添加');
   try {
-    await addRule({ ...fields });
+    await addRule({...fields});
     hide();
     message.success('添加成功');
     return true;
@@ -61,7 +64,7 @@ const handleRemoveOne = async (id: number) => {
   const hide = message.loading('正在删除');
   try {
     await removeRuleOne({
-      id:id
+      id
     });
     hide();
     message.success('删除成功，即将刷新');
@@ -102,7 +105,7 @@ const TableList: React.FC<{}> = () => {
   const [row, setRow] = useState<TableListItem>();
   const [selectedRowsState, setSelectedRows] = useState<TableListItem[]>([]);
 
-  const showDeleteConfirm =  (id: number) => {
+  const showDeleteConfirm = (id: number) => {
     confirm({
       title: '是否删除记录?',
       icon: <ExclamationCircleOutlined/>,
@@ -156,13 +159,13 @@ const TableList: React.FC<{}> = () => {
       sorter: true,
       valueType: 'dateTime',
       hideInForm: true,
-      renderFormItem: (item, { defaultRender, ...rest }, form) => {
+      renderFormItem: (item, {defaultRender, ...rest}, form) => {
         const status = form.getFieldValue('status');
         if (`${status}` === '0') {
           return false;
         }
         if (`${status}` === '3') {
-          return <Input {...rest} placeholder="请输入异常原因！" />;
+          return <Input {...rest} placeholder="请输入异常原因！"/>;
         }
         return defaultRender(item);
       },
@@ -178,13 +181,13 @@ const TableList: React.FC<{}> = () => {
       sorter: true,
       valueType: 'dateTime',
       hideInForm: true,
-      renderFormItem: (item, { defaultRender, ...rest }, form) => {
+      renderFormItem: (item, {defaultRender, ...rest}, form) => {
         const status = form.getFieldValue('status');
         if (`${status}` === '0') {
           return false;
         }
         if (`${status}` === '3') {
-          return <Input {...rest} placeholder="请输入异常原因！" />;
+          return <Input {...rest} placeholder="请输入异常原因！"/>;
         }
         return defaultRender(item);
       },
@@ -199,10 +202,10 @@ const TableList: React.FC<{}> = () => {
             handleUpdateModalVisible(true);
             setStepFormValues(record);
           }}>编辑</Button>
-          <Divider type="vertical" />
+          <Divider type="vertical"/>
           <Button type="primary" size="small">添加子机构</Button>
-          <Divider type="vertical" />
-          <Button type="primary" danger  size="small" onClick={()=>{
+          <Divider type="vertical"/>
+          <Button type="primary" danger size="small" onClick={() => {
             showDeleteConfirm(record.id)
           }}>删除</Button>
         </>
@@ -221,10 +224,10 @@ const TableList: React.FC<{}> = () => {
         }}
         toolBarRender={() => [
           <Button type="primary" onClick={() => handleModalVisible(true)}>
-            <PlusOutlined /> 新建
+            <PlusOutlined/> 新建
           </Button>,
         ]}
-        request={(params, sorter, filter) => queryRule({ ...params, sorter, filter })}
+        request={(params, sorter, filter) => queryRule({...params, sorter, filter})}
         columns={columns}
         rowSelection={{
           onChange: (_, selectedRows) => setSelectedRows(selectedRows),
@@ -234,7 +237,7 @@ const TableList: React.FC<{}> = () => {
         <FooterToolbar
           extra={
             <div>
-              已选择 <a style={{ fontWeight: 600 }}>{selectedRowsState.length}</a> 项&nbsp;&nbsp;
+              已选择 <a style={{fontWeight: 600}}>{selectedRowsState.length}</a> 项&nbsp;&nbsp;
               <span>
                 服务调用次数总计 {selectedRowsState.reduce((pre, item) => pre + item.callNo, 0)} 万
               </span>

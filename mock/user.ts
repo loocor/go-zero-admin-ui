@@ -152,7 +152,7 @@ export default {
     });
     access = 'guest';
   },
-  'GET /api/login/outLogin': (req: Request, res: Response) => {
+  'GET /api/login/logout': (req: Request, res: Response) => {
     access = '';
     res.send({ data: {}, success: true });
   },
