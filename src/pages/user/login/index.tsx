@@ -5,7 +5,7 @@ import React, {useState} from 'react';
 import ProForm, {ProFormCaptcha, ProFormCheckbox, ProFormText} from '@ant-design/pro-form';
 import {FormattedMessage, history, Link, SelectLang, useIntl} from 'umi';
 import Footer from '@/components/Footer';
-import type { LoginParamsType} from '@/services/login';
+import type {LoginParamsType} from '@/services/login';
 import {fakeAccountLogin, getFakeCaptcha} from '@/services/login';
 
 import styles from './index.less';
@@ -32,7 +32,7 @@ const goto = () => {
   window.location.href = redirect || '/';
 };
 
-const Login: React.FC<{}> = () => {
+const Login: React.FC<unknown> = () => {
   const [submitting, setSubmitting] = useState(false);
   const [userLoginState, setUserLoginState] = useState<API.LoginStateType>({});
   const [type, setType] = useState<string>('account');
@@ -89,7 +89,7 @@ const Login: React.FC<{}> = () => {
               },
             }}
             onFinish={async (values) => {
-              await handleSubmit(values);
+              await handleSubmit(values as LoginParamsType);
             }}
           >
             <Tabs activeKey={type} onChange={setType}>

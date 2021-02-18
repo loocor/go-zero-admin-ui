@@ -1,7 +1,6 @@
 import React from 'react';
-import ProForm,{ModalForm, ProFormText, ProFormTextArea} from '@ant-design/pro-form';
-
-import {TableListItem} from '../data.d';
+import ProForm, {ModalForm, ProFormText, ProFormTextArea} from '@ant-design/pro-form';
+import type {TableListItem} from '../data.d';
 
 export interface FormValueType extends Partial<TableListItem> {
   target?: string;
@@ -42,46 +41,46 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
       <ProFormText
         name="id"
         label="id"
-        width="l"
+        width="xl"
         hidden
       />
       <ProForm.Group>
-      <ProFormText
-        name="value"
-        label="数据值"
-        rules={[{ required: true, message: '请输入数据值！' }]}
-      />
+        <ProFormText
+          name="value"
+          label="数据值"
+          rules={[{required: true, message: '请输入数据值！'}]}
+        />
         <ProFormText
           name="type"
           label="类型"
-          rules={[{ required: true, message: '请输入类型！' }]}
+          rules={[{required: true, message: '请输入类型！'}]}
         />
       </ProForm.Group>
       <ProForm.Group>
-      <ProFormText
-        name="label"
-        label="标签名"
-        rules={[{ required: true, message: '请输入标签名！' }]}
-      />
+        <ProFormText
+          name="label"
+          label="标签名"
+          rules={[{required: true, message: '请输入标签名！'}]}
+        />
         <ProFormText
           name="sort"
           label="排序"
-          rules={[{ required: true, message: '请输入标签名！' }]}
+          rules={[{required: true, message: '请输入标签名！'}]}
         />
       </ProForm.Group>
       <ProFormTextArea
         name="description"
         label="描述"
-        width={"l"}
+        width={"xl"}
         placeholder="请输入至少五个字符"
-        rules={[{ required: true, message: '请输入至少五个字符的描述！', min: 4 }]}
+        rules={[{required: true, message: '请输入至少五个字符的描述！', min: 4}]}
       />
       <ProFormTextArea
         name="remarks"
         label="备注"
-        width={"l"}
+        width={"xl"}
         placeholder="请输入至少五个字符"
-        rules={[{ required: true, message: '请输入至少五个字符的备注！', min: 4 }]}
+        rules={[{required: true, message: '请输入至少五个字符的备注！', min: 4}]}
       />
     </ModalForm>
   )

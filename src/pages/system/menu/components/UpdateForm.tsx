@@ -1,7 +1,6 @@
 import React from 'react';
 import {ModalForm, ProFormText} from '@ant-design/pro-form';
-
-import {TableListItem} from '../data.d';
+import type {TableListItem} from '../data.d';
 
 export interface FormValueType extends Partial<TableListItem> {
   target?: string;
@@ -41,46 +40,46 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
       <ProFormText
         name="id"
         label="id"
-        width="l"
+        width="xl"
         hidden
       />
       <ProFormText
         name="parent_id"
         label="parent_id"
-        width="l"
+        width="xl"
         hidden
       />
       <ProFormText
         name="name"
         label="菜单名称"
-        width="l"
+        width="xl"
         rules={[{required: true, message: '请输入用户名！'}]}
       />
 
       <ProFormText
         name="url"
         label="url"
-        width="l"
+        width="xl"
       />
       <ProFormText
         name="perms"
         label="权限"
-        width="l"
+        width="xl"
       />
       <ProFormText
         name="type"
         label="类型"
-        width="l"
+        width="xl"
       />
       <ProFormText
         name="icon"
         label="图标"
-        width="l"
+        width="xl"
       />
       <ProFormText
         name="order_num"
         label="排序"
-        width="l"
+        width="xl"
       />
     </ModalForm>
   )

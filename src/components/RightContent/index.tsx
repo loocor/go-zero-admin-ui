@@ -6,9 +6,7 @@ import styles from './index.less';
 import HeaderSearch from "@/components/HeaderSearch";
 import {QuestionCircleOutlined} from "@ant-design/icons";
 
-export type SiderTheme = 'light' | 'dark';
-
-const GlobalHeaderRight: React.FC<{}> = () => {
+const GlobalHeaderRight: React.FC<unknown> = () => {
   const {initialState} = useModel('@@initialState');
 
   if (!initialState || !initialState.settings) {
@@ -30,7 +28,7 @@ const GlobalHeaderRight: React.FC<{}> = () => {
         options={[
           {label: <a href="https://umijs.org/zh/guide/umi-ui.html">umi ui</a>, value: 'umi ui'},
           {
-            label: <a href="next.ant.design">Ant Design</a>,
+            label: <a href="https://next.ant.design">Ant Design</a>,
             value: 'Ant Design',
           },
           {

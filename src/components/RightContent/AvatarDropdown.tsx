@@ -32,7 +32,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({menu}) => {
   const {initialState, setInitialState} = useModel('@@initialState');
 
   const onMenuClick = useCallback(
-    (event: {
+    async (event: {
       key: React.Key;
       keyPath: React.Key[];
       item: React.ReactInstance;
@@ -41,7 +41,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({menu}) => {
       const {key} = event;
       if (key === 'logout' && initialState) {
         setInitialState({...initialState, currentUser: undefined});
-        logout();
+        await logout();
         return;
       }
       history.push(`/account/${key}`);

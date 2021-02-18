@@ -9,7 +9,6 @@ import type {FormValueType} from './components/UpdateForm';
 import UpdateForm from './components/UpdateForm';
 import type {TableListItem} from './data.d';
 import CreateForm from './components/CreateForm';
-
 import {addRule, queryRule, removeRule, removeRuleOne, updateRule} from './service';
 
 const {confirm} = Modal;
@@ -97,7 +96,7 @@ const handleRemove = async (selectedRows: TableListItem[]) => {
   }
 };
 
-const TableList: React.FC<{}> = () => {
+const TableList: React.FC<unknown> = () => {
   const [createModalVisible, handleModalVisible] = useState<boolean>(false);
   const [updateModalVisible, handleUpdateModalVisible] = useState<boolean>(false);
   const [stepFormValues, setStepFormValues] = useState({});
@@ -111,7 +110,7 @@ const TableList: React.FC<{}> = () => {
       icon: <ExclamationCircleOutlined/>,
       content: '删除的记录不能恢复,请确认!',
       onOk() {
-        handleRemoveOne(id).then(r => {
+        handleRemoveOne(id).then(() => {
           actionRef.current?.reloadAndRest?.();
         })
       },

@@ -20,6 +20,7 @@ interface GAFieldsObject {
   eventValue?: number;
   nonInteraction?: boolean;
 }
+
 interface Window {
   ga: (
     command: 'send',

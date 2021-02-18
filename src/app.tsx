@@ -4,7 +4,7 @@ import {notification} from 'antd';
 import type {RequestConfig} from 'umi';
 import {history} from 'umi';
 import RightContent from '@/components/RightContent';
-// import Footer from '@/components/Footer';
+import Footer from '@/components/Footer';
 import type {ResponseError} from 'umi-request';
 import {queryCurrent} from './services/user';
 import defaultSettings from '../config/defaultSettings';
@@ -45,11 +45,10 @@ export const layout = ({
   return {
     rightContentRender: () => <RightContent/>,
     disableContentMargin: false,
-    // footerRender: () => <Footer />,
+    footerRender: () => <Footer/>,
     onPageChange: () => {
       const {currentUser} = initialState;
       const {location} = history;
-      // 如果没有登录，重定向到 login
       if (!currentUser && location.pathname !== '/user/login') {
         history.push('/user/login');
       }

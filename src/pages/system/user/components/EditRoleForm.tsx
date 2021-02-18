@@ -1,9 +1,9 @@
 import React from 'react';
-import { Modal,Select } from 'antd';
-import {FormValueType} from "@/pages/system/user/components/UpdateForm";
-import {TableListItem} from "@/pages/system/user/data";
+import {Modal, Select} from 'antd';
+import type {FormValueType} from "@/pages/system/user/components/UpdateForm";
+import type {TableListItem} from "@/pages/system/user/data";
 
-const { Option } = Select;
+const {Option} = Select;
 
 interface CreateFormProps {
   editModalVisible: boolean;
@@ -21,7 +21,7 @@ function onSearch(val: any) {
 }
 
 const EditRoleForm: React.FC<CreateFormProps> = (props) => {
-  const { editModalVisible, onCancel,onSubmit } = props;
+  const {editModalVisible, onCancel, onSubmit} = props;
 
 
   // @ts-ignore
@@ -38,7 +38,7 @@ const EditRoleForm: React.FC<CreateFormProps> = (props) => {
     >
       <Select
         showSearch
-        style={{ width: 200 }}
+        style={{width: 200}}
         placeholder="请选择角色"
         optionFilterProp="children"
         onChange={onChange}

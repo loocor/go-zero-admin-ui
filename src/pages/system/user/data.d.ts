@@ -34,8 +34,8 @@ export interface TableListParams {
   id?: number;
   pageSize?: number;
   currentPage?: number;
-  filter?: { [key: string]: any[] };
-  sorter?: { [key: string]: any };
+  filter?: Record<string, any[]>;
+  sorter?: Record<string, any>;
   nick_name?: string;
   mobile?: string;
   email?: string;
