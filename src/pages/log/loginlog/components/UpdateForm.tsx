@@ -2,7 +2,7 @@ import React from 'react';
 import {Modal} from 'antd';
 import {ProFormDateTimePicker, ProFormRadio, ProFormSelect, ProFormText, ProFormTextArea, StepsForm,} from '@ant-design/pro-form';
 
-import type {TableListItem} from '../data.d';
+import type {TableListItem} from '../data';
 
 export interface FormValueType extends Partial<TableListItem> {
   target?: string;
